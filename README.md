@@ -1,0 +1,1 @@
+In this project we will make a simple implementation of grade-school classic ?rock paper scissors?.

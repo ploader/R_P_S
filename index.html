@@ -8,15 +8,53 @@
 </head>
 <body>
     <script>
-        let rps = ["Rock", "Paper", "Scissors"];
+        let rps = ["ROCK", "PAPER", "SCISSORS"];
 
-        let rnd = () => Math.random() * 3;
+        let rnd = () => Math.floor(Math.random() * 3);
+
+        let playerPoints = 0, computerPoints = 0;
 
         function computerPlay(){
             return rps[rnd()];
         }
 
+        function playRound(computerSelection, playerSelection){
+            if(playerSelection.toUpperCase() == computerSelection){
+                return "It is a tie!";
+            }else{
+                if(playerSelection.toUpperCase() == "ROCK"){
+                    if(computerSelection == "PAPER"){ computerPoints++;return "You lose! Paper beats Rock";}
+                    if(computerSelection == "SCISSORS"){ playerPoints++;return "You win! Rock beats Scissors";}
+                }
+                if(playerSelection.toUpperCase() == "PAPER"){
+                    if(computerSelection == "ROCK"){ playerPoints++;return "You win! Paper beats Rock";}
+                    if(computerSelection == "SCISSORS"){ computerPoints++;return "You lose! Scissors beats Paper";}
+                }
+                if(playerSelection.toUpperCase() == "SCISSORS"){
+                    if(computerSelection == "ROCK"){ computerPoints++;return "You lose! Rock beats Scissors";}
+                    if(computerSelection == "PAPER"){ playerPoints++;return "You win! Scissors beats Paper";}
+                    }
+            }
+        }
 
+        function game(){
+            
+
+            for(let i = 0; i<5; i++){
+                let computerSelection = computerPlay();
+                let playerSelection = prompt("Rock, Paper or Scissors?: ");
+                console.log(playRound(computerSelection, playerSelection));
+            }
+            
+           if(playerPoints>computerPoints){
+               console.log("You won the game with " + playerPoints + " : " + computerPoints);
+           }else if( playerPoints<computerPoints){
+               console.log("You lost the game with " + playerPoints + " : " + computerPoints);
+           }else{
+            console.log("It is a tie!" + playerPoints + " : " + computerPoints);
+           }
+        }
+        game();
     </script>
 </body>
 </html>
